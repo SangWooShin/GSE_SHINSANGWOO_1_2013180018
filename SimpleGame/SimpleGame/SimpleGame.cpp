@@ -12,19 +12,22 @@ but WITHOUT ANY WARRANTY.
 #include <iostream>
 #include "Dependencies\glew.h"
 #include "Dependencies\freeglut.h"
-
+#include "GameObject.h"
 #include "Renderer.h"
 
 Renderer *g_Renderer = NULL;
+
+GameObject object(250, 0);
 
 void RenderScene(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
-
-	// Renderer Test
-	g_Renderer->DrawSolidRect(0, 0, 0, 4, 1, 0, 1, 1);
-
+	// Renderer Test 
+	g_Renderer->DrawSolidRect(object.GetX(), object.GetY(), 0, 40, 1, 0, 1, 1);	// (x,y,z,Å©±â,r,g,b,a)
+	object.Move(3, 0);
+	if (object.GetX() > 250)
+		object.Set(-250, 0);
 	glutSwapBuffers();
 }
 
