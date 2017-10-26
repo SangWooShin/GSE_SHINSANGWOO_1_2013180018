@@ -1,3 +1,4 @@
-﻿  SimpleGame.cpp
+﻿  Object.cpp
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\object.cpp(55): warning C4552: '-': 의미 없는 연산자입니다. 파생 작업이 있는 연산자여야 합니다.
   SimpleGame.vcxproj -> C:\Users\DELL\Desktop\3-2\게임 소프트웨어 공학\project\GSE_SHINSANGWOO_1_2013180018\SimpleGame\x64\Debug\SimpleGame.exe
   SimpleGame.vcxproj -> C:\Users\DELL\Desktop\3-2\게임 소프트웨어 공학\project\GSE_SHINSANGWOO_1_2013180018\SimpleGame\x64\Debug\SimpleGame.pdb (Partial PDB)
