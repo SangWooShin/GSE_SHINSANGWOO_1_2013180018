@@ -16,29 +16,22 @@ but WITHOUT ANY WARRANTY.
 #include "Renderer.h"
 #include "SceneMgr.h"
 
-default_random_engine dre;
-uniform_int_distribution<int> ranPos(-250,250);
-uniform_int_distribution<int> movePosX(-3, 3);
-uniform_int_distribution<int> movePosY(-3, 3);
+SceneMgr* sceneMgr = NULL;
 
-SceneMgr sceneMgr;
-DWORD prevTime;
+DWORD prevTime = 0;
+bool lButtonDown;
 
 void RenderScene(void)
 {
-	dre.seed(time(NULL));
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	DWORD currTime = timeGetTime();
 	DWORD elapsedTime = currTime - prevTime;
 	prevTime = currTime;
-	for (int i = 0; i < 50; ++i) {
-		sceneMgr.AddObject(ranPos(dre), ranPos(dre), movePosX(dre), movePosY(dre));
-	}
 	
-	sceneMgr.Update(elapsedTime);
-	sceneMgr.Darw();
+	sceneMgr->Update(elapsedTime);
+	sceneMgr->Darw();
 	
 	glutSwapBuffers();
 }
@@ -50,6 +43,17 @@ void Idle(void)
 
 void MouseInput(int button, int state, int x, int y)
 {
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		lButtonDown = true;
+	}
+
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP && lButtonDown == true)
+	{
+		sceneMgr->AddObject(x - 250, -y + 250, 1);
+		lButtonDown = false;
+	}
+
 	RenderScene();
 }
 
@@ -82,7 +86,9 @@ int main(int argc, char **argv)
 		std::cout << "GLEW 3.0 not supported\n ";
 	}
 
-	sceneMgr.Release();
+	sceneMgr = new SceneMgr;
+
+	sceneMgr->Release();
 
 	glutDisplayFunc(RenderScene);
 	glutIdleFunc(Idle);
@@ -90,9 +96,11 @@ int main(int argc, char **argv)
 	glutMouseFunc(MouseInput);
 	glutSpecialFunc(SpecialKeyInput);
 
+	prevTime = timeGetTime();
+
 	glutMainLoop();
 
-	sceneMgr.Delete();
+	delete sceneMgr;
 
     return 0;
 }
