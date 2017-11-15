@@ -11,6 +11,7 @@
 #define BUILDING_MAX_COUNT	1
 #define CHARACTER_MAX_COUNT 10
 #define BULLET_MAX_COUNT	50
+#define ARROW_MAX_COUNT		3
 
 class SceneMgr
 {
@@ -18,6 +19,8 @@ private:
 	int objectCount;
 	int bulletCount;
 	float bulletTime;
+	int arrowCount[10];
+	float arrowTime[10];
 
 public:
 	SceneMgr();
@@ -26,6 +29,7 @@ public:
 	Object* building;
 	Object* bullet[100];
 	Object* object[10];		// Ä³¸¯ÅÍ
+	Object* arrow[10][100];
 
 	void AddObject(float x, float y, int objectType);
 	void AddBullet();

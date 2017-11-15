@@ -16,7 +16,7 @@ SceneMgr::SceneMgr()
 SceneMgr::~SceneMgr()
 {
 }
-
+ 
 void SceneMgr::Release() 
 {
 	dre.seed(time(NULL));
@@ -87,10 +87,8 @@ bool SceneMgr::Collision(Object* mainObj, Object* collObj)
 void SceneMgr::Darw() 
 {
 	if (building->GetDeath() == false) {
-		if (building->GetCollision() == true)
-			renderer->DrawSolidRect(building->GetX(), building->GetY(), 0, building->GetSize(), 1, 0, 0, 1);
-		else
-			renderer->DrawSolidRect(building->GetX(), building->GetY(), 0, building->GetSize(), building->GetR(), building->GetG(), building->GetB(), 1);
+		GLuint texCharacter = renderer->CreatePngTexture("../Resource/ohhh.png");
+		renderer->DrawTexturedRect(building->GetX(), building->GetY(), 0, building->GetSize(), 1, 1, 1, 1, texCharacter);
 		building->SetCollision(false);
 	}
 	for (int i = 0; i < objectCount; ++i) 
@@ -138,8 +136,8 @@ void SceneMgr::Update(DWORD elapsedTime)
 		}
 	}
 
-	for (int i = 0; i < bulletCount; ++i)
-		wallCheck(bullet[i]);
+	/*for (int i = 0; i < bulletCount; ++i)
+		wallCheck(bullet[i]);*/
 
 	for (int i = 0; i < objectCount; ++i) 
 	{
@@ -157,8 +155,9 @@ void SceneMgr::Update(DWORD elapsedTime)
 			bullet[i]->update(elapsedTime);
 		}
 		if (bullet[i]->GetDeath())
-			bullet[i]->SetPosition(500, 500);
+			bullet[i]->SetPosition(1500, 1500);
 	}
+
 
 	float elapsedTimeInSecond = elapsedTime / 1000.f;
 	if (bulletTime > 0)
