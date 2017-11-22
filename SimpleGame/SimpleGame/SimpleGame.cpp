@@ -20,6 +20,8 @@ SceneMgr* sceneMgr = NULL;
 
 DWORD prevTime = 0;
 bool lButtonDown;
+#define WINDOW_WIDTH_MAX 500
+#define WINDOW_HIGHT_MAX 800
 
 void RenderScene(void)
 {
@@ -27,7 +29,7 @@ void RenderScene(void)
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	DWORD currTime = timeGetTime();
-	DWORD elapsedTime = currTime - prevTime;
+	float elapsedTime = (currTime - prevTime) / 1000.f;
 	prevTime = currTime;
 	
 	sceneMgr->Update(elapsedTime);
@@ -50,7 +52,8 @@ void MouseInput(int button, int state, int x, int y)
 
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP && lButtonDown == true)
 	{
-		sceneMgr->AddObject(x - 250, -y + 250, 1);
+		if(-y + WINDOW_HIGHT_MAX / 2 < 0)
+			sceneMgr->AddObject(x - WINDOW_WIDTH_MAX / 2, -y + WINDOW_HIGHT_MAX / 2, 2, 1);
 		lButtonDown = false;
 	}
 
@@ -73,7 +76,7 @@ int main(int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(0, 0);
-	glutInitWindowSize(500, 500);
+	glutInitWindowSize(WINDOW_WIDTH_MAX, WINDOW_HIGHT_MAX);
 	glutCreateWindow("Game Software Engineering KPU");
 
 	glewInit();

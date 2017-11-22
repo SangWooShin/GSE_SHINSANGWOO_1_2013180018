@@ -1,2 +1,22 @@
-﻿  SimpleGame.vcxproj -> C:\Users\DELL\Desktop\3-2\게임 소프트웨어 공학\project\GSE_SHINSANGWOO_1_2013180018\SimpleGame\x64\Debug\SimpleGame.exe
+﻿  SceneMgr.cpp
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(36): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(46): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(82): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(84): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(129): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(136): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(138): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(143): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(145): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(151): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(153): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\scenemgr.cpp(309): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Object.cpp
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\object.cpp(15): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  SimpleGame.cpp
+c:\users\dell\desktop\3-2\게임 소프트웨어 공학\project\gse_shinsangwoo_1_2013180018\simplegame\simplegame\simplegame.cpp(56): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  SimpleGame.vcxproj -> C:\Users\DELL\Desktop\3-2\게임 소프트웨어 공학\project\GSE_SHINSANGWOO_1_2013180018\SimpleGame\x64\Debug\SimpleGame.exe
   SimpleGame.vcxproj -> C:\Users\DELL\Desktop\3-2\게임 소프트웨어 공학\project\GSE_SHINSANGWOO_1_2013180018\SimpleGame\x64\Debug\SimpleGame.pdb (Partial PDB)

@@ -7,10 +7,13 @@ Object::Object()
 
 Object::Object(float x, float y, int ObjectType) : x(x), y(y)
 {
-	if (ObjectType == 0) { life = 500, speed = 0, size = 50, r = 120, g = 120, b = 0; }			// 건물
-	else if (ObjectType == 1){ life = 10, speed = 300, size = 10, r = 255, g = 255, b = 255; }	// 플레이어
-	else if (ObjectType == 2){ life = 20, speed = 600, size = 2, r = 255, g = 0, b = 0; }		// 총알
-	else if (ObjectType == 3){ life = 10, speed = 100, size = 2, r = 0, g = 255, b = 0;	}		// 화살
+	if (ObjectType == 0) { life = 500, speed = 0, size = 100, r = 1, g = 1, b = 0; }			// 건물
+	else if (ObjectType == 1){ life = 10, speed = 300, size = 10, r = 1, g = 0, b = 0; }	// 플레이어_0
+	else if (ObjectType == 2) { life = 10, speed = 300, size = 10, r = 0, g = 0, b = 1; }	// 플레이어
+	else if (ObjectType == 3){ life = 20, speed = 600, size = 5, r = 1, g = 0, b = 0; }		// 총알_0
+	else if (ObjectType == 4){ life = 20, speed = 600, size = 5, r = 0, g = 0, b = 1; }		// 총알_1
+	else if (ObjectType == 5){ life = 10, speed = 100, size = 2, r = 1.0, g = 0.7, b = 1.0;	}// 화살_0
+	else if (ObjectType == 6){ life = 10, speed = 100, size = 2, r = 1, g = 1, b = 0; }		// 화살_1
 	
 	death = 0;
 	lifeTime = 1000.f;
@@ -47,17 +50,14 @@ void Object::minusLife(Object* minusObject) {
 		death = true;
 }
 
-void Object::update(DWORD elapsedTime)
+void Object::update(float elapsedTimeInSecond)
 {
-
-	float elapsedTimeInSecond = elapsedTime / 1000.f;
-
 	if (death == true)
-		x = 500, y = 500;
+		x = 1000, y = 1000;
 	else 
 	{
-		x += moveX * elapsedTimeInSecond * speed / 100;
-		y += moveY * elapsedTimeInSecond * speed / 100;
+		x += moveX * elapsedTimeInSecond * speed / 50;
+		y += moveY * elapsedTimeInSecond * speed / 50;
 	}
 	if (lifeTime > 0)
 		lifeTime -= elapsedTimeInSecond;

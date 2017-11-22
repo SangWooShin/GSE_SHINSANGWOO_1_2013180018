@@ -43,7 +43,7 @@ public:
 
 	void minusLife(Object* minusObject);
 
-	void update(DWORD elapsedTime);
+	void update(float elapsedTime);
 
 };
 
