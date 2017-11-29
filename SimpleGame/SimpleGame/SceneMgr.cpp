@@ -126,31 +126,33 @@ void SceneMgr::Darw()
 	for (int i = 0; i < 2; ++i) {
 		for (int j = 0; j < BUILDING_MAX_COUNT; ++j) {
 				if (building[i][j]->GetDeath() == false) {
-					renderer->DrawTexturedRect(building[i][j]->GetX(), building[i][j]->GetY(), 0, building[i][j]->GetSize(), 1, 1, 1, 1, texCharacter[i]);
+					renderer->DrawTexturedRect(building[i][j]->GetX(), building[i][j]->GetY(), 0, building[i][j]->GetSize(), 1, 1, 1, 1, texCharacter[i], 0.1);
+					if(i==0)
+						renderer->DrawSolidRectGauge(building[i][j]->GetX(), building[i][j]->GetY() + 60, 0, 90, 5, 1, 0, 0, 1, (float) building[i][j]->GetLife()/500,0.1);
+					else
+						renderer->DrawSolidRectGauge(building[i][j]->GetX(), building[i][j]->GetY() + 60, 0, 90, 5, 0, 0, 1, 1, (float)building[i][j]->GetLife() / 500, 0.1);
 					building[i][j]->SetCollision(false);
 				}
 		}
 
 		for (int j = 0; j < objectCount[i]; ++j) {
-			if (i == 0)
-				renderer->DrawSolidRect(object[i][j]->GetX(), object[i][j]->GetY(), 0, object[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), OBJECT_CHARACTER_0);
-			else
-				renderer->DrawSolidRect(object[i][j]->GetX(), object[i][j]->GetY(), 0, object[i][j]->GetSize(), object[i][j]->GetR(), object[i][j]->GetG(), object[i][j]->GetB(), OBJECT_CHARACTER_1);
+			renderer->DrawSolidRect(object[i][j]->GetX(), object[i][j]->GetY(), 0, object[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, 0.2);
+			renderer->DrawSolidRectGauge(object[i][j]->GetX(), object[i][j]->GetY() + 10, 0, 10, 3, bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, (float)object[i][j]->GetLife() / 100, 0.2);
 			object[i][j]->SetCollision(false);
 
 			for (int h = 0; h < arrowCount[i][j]; ++h) {
 				if(i==0)
-					renderer->DrawSolidRect(arrow[i][j][h]->GetX(), arrow[i][j][h]->GetY(), 0, arrow[i][j][h]->GetSize(), arrow[i][j][h]->GetR(), arrow[i][j][h]->GetG(), arrow[i][j][h]->GetB(), OBJECT_ARROW_0);
+					renderer->DrawSolidRect(arrow[i][j][h]->GetX(), arrow[i][j][h]->GetY(), 0, arrow[i][j][h]->GetSize(), arrow[i][j][h]->GetR(), arrow[i][j][h]->GetG(), arrow[i][j][h]->GetB(), 1, 0.3);
 				else
-					renderer->DrawSolidRect(arrow[i][j][h]->GetX(), arrow[i][j][h]->GetY(), 0, arrow[i][j][h]->GetSize(), arrow[i][j][h]->GetR(), arrow[i][j][h]->GetG(), arrow[i][j][h]->GetB(), OBJECT_ARROW_1);
+					renderer->DrawSolidRect(arrow[i][j][h]->GetX(), arrow[i][j][h]->GetY(), 0, arrow[i][j][h]->GetSize(), arrow[i][j][h]->GetR(), arrow[i][j][h]->GetG(), arrow[i][j][h]->GetB(), 1, 0.3);
 			}
 		}
 
 		for (int j = 0; j < bulletCount[i]; ++j) {
 			if (i == 0)
-				renderer->DrawSolidRect(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, bullet[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), OBJECT_BULLET_0);
+				renderer->DrawSolidRect(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, bullet[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, 0.3);
 			else
-				renderer->DrawSolidRect(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, bullet[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), OBJECT_BULLET_1);
+				renderer->DrawSolidRect(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, bullet[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, 0.3);
 		}
 	}
 }
@@ -310,6 +312,6 @@ void SceneMgr::Update(float elapsedTimeInSecond)
 	
 	objectCoolTime += elapsedTimeInSecond;
 
-	cout << objectCoolTime << endl;
+	cout << building[0][1]->GetLife() << endl;
 
 }
