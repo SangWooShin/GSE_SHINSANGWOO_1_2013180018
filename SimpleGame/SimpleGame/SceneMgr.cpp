@@ -14,8 +14,15 @@ SceneMgr::SceneMgr()
 	bulletCount[0] = 0;
 	bulletCount[1] = 0;
 
+	animateCount[0] = 0;
+	animateCount[1] = 0;
+
 	texCharacter[0] = renderer->CreatePngTexture("../Resource/ohhh.png");
 	texCharacter[1] = renderer->CreatePngTexture("../Resource/ohh.png");
+	texCharacter[2] = renderer->CreatePngTexture("../Resource/1.png");	// 적군
+	texCharacter[3] = renderer->CreatePngTexture("../Resource/2.png");	// 아군
+	texCharacter[4] = renderer->CreatePngTexture("../Resource/3.png");	// 총알 파티클
+	texGrass = renderer->CreatePngTexture("../Resource/Grass.png");
 	
 	for (int i = 0; i < 2; ++i) {
 		for (int j = 0; j < 10; ++j) {
@@ -25,6 +32,7 @@ SceneMgr::SceneMgr()
 	}
 
 	objectCoolTime = 7;
+	particleTime = 0;
 }
 
 SceneMgr::~SceneMgr()
@@ -119,9 +127,9 @@ bool SceneMgr::Collision(Object* mainObj, Object* collObj)
 	return 0;
 }
 
-void SceneMgr::Darw() 
+void SceneMgr::Darw(float elapsedTimeInSecond)
 {
-	
+	renderer->DrawTexturedRect(0, 0, 0, 800, 1, 1, 1, 1, texGrass, 0.4);	// 배경 Depth 최대값. 1이상은 출력 안됨.
 
 	for (int i = 0; i < 2; ++i) {
 		for (int j = 0; j < BUILDING_MAX_COUNT; ++j) {
@@ -136,8 +144,11 @@ void SceneMgr::Darw()
 		}
 
 		for (int j = 0; j < objectCount[i]; ++j) {
-			renderer->DrawSolidRect(object[i][j]->GetX(), object[i][j]->GetY(), 0, object[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, 0.2);
-			renderer->DrawSolidRectGauge(object[i][j]->GetX(), object[i][j]->GetY() + 10, 0, 10, 3, bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, (float)object[i][j]->GetLife() / 100, 0.2);
+			if(i==0)
+				renderer->DrawTexturedRectSeq(object[i][j]->GetX(), object[i][j]->GetY(), 0, 50, 1, 1, 1, 1, texCharacter[2], animateCount[0]/3, 0, 8, 1, 0.1);
+			else
+				renderer->DrawTexturedRectSeq(object[i][j]->GetX(), object[i][j]->GetY(), 0, 50, 1, 1, 1, 1, texCharacter[3], animateCount[0] / 3, animateCount[1], 8, 8, 0.1);
+			renderer->DrawSolidRectGauge(object[i][j]->GetX(), object[i][j]->GetY() + 30, 0, 20, 3, bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, (float)object[i][j]->GetLife() / 100, 0.2);
 			object[i][j]->SetCollision(false);
 
 			for (int h = 0; h < arrowCount[i][j]; ++h) {
@@ -149,12 +160,12 @@ void SceneMgr::Darw()
 		}
 
 		for (int j = 0; j < bulletCount[i]; ++j) {
-			if (i == 0)
-				renderer->DrawSolidRect(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, bullet[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, 0.3);
-			else
-				renderer->DrawSolidRect(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, bullet[i][j]->GetSize(), bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, 0.3);
+			renderer->DrawParticle(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, 5, 1, 1, 1, 1, -(bullet[i][j]->GetMoveX()), -(bullet[i][j]->GetMoveY()), texCharacter[4], particleTime);
+			renderer->DrawSolidRect(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, 5, bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, 0.3);
 		}
 	}
+
+	
 }
 
 void SceneMgr::Update(float elapsedTimeInSecond)
@@ -312,6 +323,18 @@ void SceneMgr::Update(float elapsedTimeInSecond)
 	
 	objectCoolTime += elapsedTimeInSecond;
 
-	cout << building[0][1]->GetLife() << endl;
-
+	/////////////////////////////////////////////////////////
+	// 애니메이션
+	if (animateCount[0] < 24)
+		++animateCount[0];
+	else
+	{
+		animateCount[0] = 0;
+		if (animateCount[1] < 8)
+			++animateCount[1];
+		else
+			animateCount[1] = 0;
+	}
+	particleTime += 0.1 * ((float) elapsedTimeInSecond);
+	cout << particleTime << endl;
 }

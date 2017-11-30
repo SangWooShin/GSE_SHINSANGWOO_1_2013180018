@@ -10,7 +10,7 @@ Object::Object(float x, float y, int ObjectType) : x(x), y(y)
 	if (ObjectType == 0) { life = 500, speed = 0, size = 100, r = 1, g = 1, b = 0; }		// 건물
 	else if (ObjectType == 1){ life = 100, speed = 300, size = 10, r = 1, g = 0, b = 0; }	// 플레이어_0
 	else if (ObjectType == 2) { life = 100, speed = 300, size = 10, r = 0, g = 0, b = 1; }	// 플레이어
-	else if (ObjectType == 3){ life = 20, speed = 600, size = 5, r = 1, g = 0, b = 0; }		// 총알_0
+	else if (ObjectType == 3){ life = 20, speed = 50, size = 20, r = 1, g = 0, b = 0; }		// 총알_0
 	else if (ObjectType == 4){ life = 20, speed = 600, size = 5, r = 0, g = 0, b = 1; }		// 총알_1
 	else if (ObjectType == 5){ life = 10, speed = 100, size = 2, r = 1.0, g = 0.7, b = 1.0;	}// 화살_0
 	else if (ObjectType == 6){ life = 10, speed = 100, size = 2, r = 1, g = 1, b = 0; }		// 화살_1

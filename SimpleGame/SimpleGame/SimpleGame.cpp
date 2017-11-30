@@ -33,7 +33,7 @@ void RenderScene(void)
 	prevTime = currTime;
 	
 	sceneMgr->Update(elapsedTime);
-	sceneMgr->Darw();
+	sceneMgr->Darw(elapsedTime);
 	
 	glutSwapBuffers();
 }

@@ -29,8 +29,12 @@ private:
 	float arrowTime[2][10];
 	float objectTime;
 	float objectCoolTime;
+	float particleTime;
 
-	GLuint texCharacter[2];
+	int animateCount[2];
+
+	GLuint texCharacter[5];
+	GLuint texGrass;
 
 public:
 	SceneMgr();
@@ -47,7 +51,7 @@ public:
 	bool Collision(Object* mainObj, Object* collObj);
 	void wallCheck(Object* object);
 	void Release();
-	void Darw();
+	void Darw(float elapsedTimeInSecond);
 	void Update(float elapsedTime);
 };
 
