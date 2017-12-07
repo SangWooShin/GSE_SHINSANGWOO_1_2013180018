@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "Renderer.h"
+#include "Sound.h"
 
 #define OBJECT_BUILDING		0
 #define OBJECT_CHARACTER_0	1
@@ -32,6 +33,9 @@ private:
 	float particleTime;
 
 	int animateCount[2];
+
+	Sound* m_sound;
+	int soundBG;
 
 	GLuint texCharacter[5];
 	GLuint texGrass;

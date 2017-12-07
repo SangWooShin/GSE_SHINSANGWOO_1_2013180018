@@ -9,6 +9,9 @@ Renderer *renderer = NULL;
 
 SceneMgr::SceneMgr()
 {
+	m_sound = new Sound();
+
+
 	objectCount[0] = 0;
 	objectCount[1] = 0;
 	bulletCount[0] = 0;
@@ -53,6 +56,11 @@ void SceneMgr::Release()
 		for (int j = 0; j < BUILDING_MAX_COUNT; ++j)
 			building[i][j] = new Object(-150 + 150 * j, -600 * i + 300, OBJECT_BUILDING);
 	}
+
+	soundBG = m_sound->CreateSound("./Dependencies/SoundSamples/MF-W-90.XM");
+
+	m_sound->PlaySound(soundBG, true, 0.2f);
+
 }
 
 void SceneMgr::AddObject(float x, float y, int objectType, int team) 
@@ -165,7 +173,7 @@ void SceneMgr::Darw(float elapsedTimeInSecond)
 		}
 	}
 
-	
+	renderer->DrawText(0, 0, GLUT_BITMAP_9_BY_15, 1, 0, 0, "Ohh123");
 }
 
 void SceneMgr::Update(float elapsedTimeInSecond)
