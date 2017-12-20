@@ -9,6 +9,8 @@ Renderer *renderer = NULL;
 
 SceneMgr::SceneMgr()
 {
+	renderer = new Renderer(500, 800);
+
 	m_sound = new Sound();
 
 
@@ -25,6 +27,7 @@ SceneMgr::SceneMgr()
 	texCharacter[2] = renderer->CreatePngTexture("../Resource/1.png");	// Àû±º
 	texCharacter[3] = renderer->CreatePngTexture("../Resource/2.png");	// ¾Æ±º
 	texCharacter[4] = renderer->CreatePngTexture("../Resource/3.png");	// ÃÑ¾Ë ÆÄÆ¼Å¬
+	texCharacter[5] = renderer->CreatePngTexture("../Resource/Snow.png");	// ´«
 	texGrass = renderer->CreatePngTexture("../Resource/Grass.png");
 	
 	for (int i = 0; i < 2; ++i) {
@@ -46,7 +49,6 @@ void SceneMgr::Release()
 {
 	dre.seed(time(NULL));
 
-	renderer = new Renderer(500, 800);
 
 	if (!renderer->IsInitialized())
 	{
@@ -168,12 +170,15 @@ void SceneMgr::Darw(float elapsedTimeInSecond)
 		}
 
 		for (int j = 0; j < bulletCount[i]; ++j) {
-			renderer->DrawParticle(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, 5, 1, 1, 1, 1, -(bullet[i][j]->GetMoveX()), -(bullet[i][j]->GetMoveY()), texCharacter[4], particleTime);
+			renderer->DrawParticle(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, 5, 1, 1, 1, 1, -(bullet[i][j]->GetMoveX()), -(bullet[i][j]->GetMoveY()), texCharacter[4], particleTime,0.3);
 			renderer->DrawSolidRect(bullet[i][j]->GetX(), bullet[i][j]->GetY(), 0, 5, bullet[i][j]->GetR(), bullet[i][j]->GetG(), bullet[i][j]->GetB(), 1, 0.3);
 		}
 	}
 
 	renderer->DrawText(0, 0, GLUT_BITMAP_9_BY_15, 1, 0, 0, "Ohh123");
+
+	renderer->DrawParticleClimate(0, 0, 0, 1, 1, 1, 1, 1, -0.1, -0.1, texCharacter[5], particleTime, 0.01);
+
 }
 
 void SceneMgr::Update(float elapsedTimeInSecond)

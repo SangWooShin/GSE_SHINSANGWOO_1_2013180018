@@ -37,7 +37,7 @@ private:
 	Sound* m_sound;
 	int soundBG;
 
-	GLuint texCharacter[5];
+	GLuint texCharacter[6];
 	GLuint texGrass;
 
 public:
