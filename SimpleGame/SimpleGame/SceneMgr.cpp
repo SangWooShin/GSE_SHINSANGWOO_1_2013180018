@@ -131,6 +131,7 @@ bool SceneMgr::Collision(Object* mainObj, Object* collObj)
 	if (mainObj->GetX() - collObj->GetX() < (collObj->GetSize() + mainObj->GetSize())/2 && mainObj->GetX() - collObj->GetX() > -(collObj->GetSize() + mainObj->GetSize()) / 2
 		&& mainObj->GetY() - collObj->GetY() < (collObj->GetSize() + mainObj->GetSize()) / 2 && mainObj->GetY() - collObj->GetY() > -(collObj->GetSize() + mainObj->GetSize()) / 2) {
 		mainObj->SetCollision(true);
+		sceneTransform = 1;
 		return true;
 	}
 
@@ -226,6 +227,7 @@ void SceneMgr::Update(float elapsedTimeInSecond)
 						if (Collision(building[i][j], bullet[collCheck][l])) {
 							building[i][j]->minusLife(bullet[collCheck][l]);
 							bullet[collCheck][l]->SetDeath(true);
+							renderer->SetSceneTransform(10, 0, 1, 1);
 						}
 					}
 				}
@@ -248,7 +250,6 @@ void SceneMgr::Update(float elapsedTimeInSecond)
 							building[i][j]->minusLife(object[collCheck][l]);
 							object[collCheck][l]->SetDeath(true);
 						}
-
 						for (int h = 0; h < arrowCount[collCheck][l]; ++h) {
 							if (Collision(building[i][j], arrow[collCheck][l][h])) {
 								building[i][j]->minusLife(arrow[collCheck][l][h]);
@@ -349,5 +350,20 @@ void SceneMgr::Update(float elapsedTimeInSecond)
 			animateCount[1] = 0;
 	}
 	particleTime += 0.1 * ((float) elapsedTimeInSecond);
-	cout << particleTime << endl;
+	SceneTransform();
+}
+
+void SceneMgr::SceneTransform() {
+	if (sceneTransform == 1)
+	{
+		renderer->SetSceneTransform(30, 0, 1, 1);
+		++sceneTransform;
+	}
+	else if (sceneTransform == 20) {
+		renderer->SetSceneTransform(-30, 0, 1, 1);
+		sceneTransform = 0;
+	}
+	else if (sceneTransform > 0) {
+		++sceneTransform;
+	}
 }

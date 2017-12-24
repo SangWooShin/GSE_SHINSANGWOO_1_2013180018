@@ -23,16 +23,16 @@
 class SceneMgr
 {
 private:
-	int objectCount[2];
-	int bulletCount[2];
-	float bulletTime;
-	int arrowCount [2][10];
-	float arrowTime[2][10];
-	float objectTime;
-	float objectCoolTime;
-	float particleTime;
-
-	int animateCount[2];
+	int		objectCount[2];
+	int		bulletCount[2];
+	float	bulletTime;
+	int		arrowCount [2][10];
+	float	arrowTime[2][10];
+	float	objectTime;
+	float	objectCoolTime;
+	float	particleTime;
+	int		sceneTransform = 0;
+	int		animateCount[2];
 
 	Sound* m_sound;
 	int soundBG;
@@ -57,5 +57,6 @@ public:
 	void Release();
 	void Darw(float elapsedTimeInSecond);
 	void Update(float elapsedTime);
+	void SceneTransform();
 };
 
